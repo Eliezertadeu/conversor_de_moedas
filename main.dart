@@ -9,13 +9,19 @@ const request = "https://api.hgbrasil.com/finance?format=json?key=suakey";
 void main() async {
   print(await getData());
 
-  runApp(MaterialApp(
+  runApp(
+    MaterialApp(
       home: Home(),
       theme: ThemeData(
-          hintColor: Colors.amber,
-          inputDecorationTheme: InputDecorationTheme(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.amber))))));
+        hintColor: Colors.amber,
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.amber),
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 Future<Map> getData() async {
@@ -106,34 +112,34 @@ class _HomeState extends State<Home> {
                 dolar = snapshot.data["results"]["currencies"]["USD"]["buy"];
                 euro = snapshot.data["results"]["currencies"]["EUR"]["buy"];
                 return SingleChildScrollView(
-                    padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Icon(Icons.monetization_on,
-                            size: 150.0, color: Colors.amber),
-                        buildTextField(
-                            "Real", "R\$", realController, _realChanged),
-                        Divider(),
-                        buildTextField(
-                            "Dolar", "US\$", dolarController, _dolarChanged),
-                        Divider(),
-                        buildTextField(
-                            "Euro", "\€", euroController, _euroChanged),
-                        Divider(),
-                        RaisedButton(
-                          padding: EdgeInsets.all(10.0),
-                          splashColor: Colors.amber,
-                          color: Colors.yellow,
-                          child: Text(
-                            "Limpar campos",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 25.0),
-                          ),
-                          onPressed: _clearAll,
+                  padding: EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Icon(Icons.monetization_on,
+                          size: 150.0, color: Colors.amber),
+                      buildTextField(
+                          "Real", "R\$", realController, _realChanged),
+                      Divider(),
+                      buildTextField(
+                          "Dolar", "US\$", dolarController, _dolarChanged),
+                      Divider(),
+                      buildTextField(
+                          "Euro", "\€", euroController, _euroChanged),
+                      Divider(),
+                      RaisedButton(
+                        padding: EdgeInsets.all(10.0),
+                        splashColor: Colors.amber,
+                        color: Colors.yellow,
+                        child: Text(
+                          "Limpar campos",
+                          style: TextStyle(color: Colors.black, fontSize: 25.0),
                         ),
-                      ],
-                    ));
+                        onPressed: _clearAll,
+                      ),
+                    ],
+                  ),
+                );
               }
           }
         },
